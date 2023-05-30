@@ -19,10 +19,12 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}></input>
         <input
           type="password"
           placeholder="senha"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}></input>
         <Btn type="submit">Entrar</Btn>
       </form>
