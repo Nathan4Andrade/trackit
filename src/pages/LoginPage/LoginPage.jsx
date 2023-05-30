@@ -14,7 +14,7 @@ export default function LoginPage(props) {
   function login(e) {
     e.preventDefault();
     console.log({ email, password });
-    navigate("/habitos");
+    navigate("/hoje");
     setIsAuthenticaded(true);
   }
   return (

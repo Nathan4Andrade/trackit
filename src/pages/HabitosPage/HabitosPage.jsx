@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Habito from "./Habito";
+import CriarHabito from "./CriarHabito";
 
 export default function HabitosPage() {
   return (
@@ -8,7 +8,7 @@ export default function HabitosPage() {
         <h2>Meus hábitos</h2>
         <button>+</button>
       </Header>
-      <Habito></Habito>
+      <CriarHabito></CriarHabito>
 
       <p>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
@@ -44,8 +44,6 @@ const PageContainer = styled.div`
   align-items: center;
   text-align: center;
   color: #293845;
-  margin-top: 30px;
-  padding-top: 70px;
   padding: calc(70px + 22px) 18px;
   background-color: #f2f2f2;
 

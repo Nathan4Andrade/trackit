@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Dias from "./Dias";
 
-export default function Habito() {
+export default function CriarHabito() {
   return (
     <SCHabito>
       <input placeholder="nome do hábito" />
