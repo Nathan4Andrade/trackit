@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function LoginPage() {
+export default function LoginPage(props) {
+  // eslint-disable-next-line react/prop-types
+  const { setIsAuthenticaded } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate("/habitos");
 
   function login(e) {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
+    console.log({ email, password });
+    navigate("/habitos");
+    setIsAuthenticaded(true);
   }
   return (
     <PageContainer>
@@ -20,12 +24,14 @@ export default function LoginPage() {
           type="email"
           placeholder="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}></input>
+          onChange={(e) => setEmail(e.target.value)}
+          required></input>
         <input
           type="password"
           placeholder="senha"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}></input>
+          onChange={(e) => setPassword(e.target.value)}
+          required></input>
         <Btn type="submit">Entrar</Btn>
       </form>
       <Link to={`/cadastro`}>
@@ -48,6 +54,7 @@ const SignUp = styled.p`
 `;
 const Btn = styled.button`
   width: 303px;
+  height: 45px;
 `;
 
 const Logo = styled.h1`

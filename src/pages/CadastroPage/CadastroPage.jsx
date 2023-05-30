@@ -10,6 +10,7 @@ export default function CadastroPage() {
 
   function signUp(e) {
     e.preventDefault();
+    console.log({ email, password, name, profilePicture });
   }
   return (
     <PageContainer>
@@ -20,17 +21,20 @@ export default function CadastroPage() {
           type="email"
           placeholder="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}></input>
+          onChange={(e) => setEmail(e.target.value)}
+          required></input>
         <input
           type="password"
           placeholder="senha"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}></input>
+          onChange={(e) => setPassword(e.target.value)}
+          required></input>
         <input
           type="text"
           placeholder="nome"
           value={name}
-          onChange={(e) => setName(e.target.value)}></input>
+          onChange={(e) => setName(e.target.value)}
+          required></input>
         <input
           type="text"
           placeholder="foto"
@@ -38,7 +42,7 @@ export default function CadastroPage() {
           onChange={(e) => setProfilePicture(e.target.value)}></input>
         <Btn type="submit">Cadastrar</Btn>
       </form>
-      <Link to={`/cadastro`}>
+      <Link to={`/`}>
         <Login>Já tem uma conta? Faça login!</Login>
       </Link>
     </PageContainer>
@@ -58,6 +62,7 @@ const Login = styled.p`
 `;
 const Btn = styled.button`
   width: 303px;
+  height: 45px;
 `;
 
 const Logo = styled.h1`

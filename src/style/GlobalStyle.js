@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     }
 	button {
 
-        height: 45px;
+        
         background: #52b6ff;
         border-radius: 5px;
 		border-style: none;
