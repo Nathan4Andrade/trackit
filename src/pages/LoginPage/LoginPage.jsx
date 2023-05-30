@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import logo from "../../assets/logo.png";
+
 export default function LoginPage(props) {
   // eslint-disable-next-line react/prop-types
   const { setIsAuthenticaded } = props;
@@ -17,8 +19,10 @@ export default function LoginPage(props) {
   }
   return (
     <PageContainer>
-      <img alt="logo" />
-      <Logo>TaskIt</Logo>
+      <Logo>
+        <img src={logo} alt="logo" />
+        TrackIt
+      </Logo>
       <form onSubmit={login}>
         <input
           type="email"
@@ -57,7 +61,7 @@ const Btn = styled.button`
   height: 45px;
 `;
 
-const Logo = styled.h1`
+const Logo = styled.div`
   font-family: "Playball";
   font-style: normal;
   font-weight: 400;
@@ -66,6 +70,10 @@ const Logo = styled.h1`
   text-align: center;
   color: #126ba5;
   margin-bottom: 33px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 `;
 const PageContainer = styled.div`
   display: flex;

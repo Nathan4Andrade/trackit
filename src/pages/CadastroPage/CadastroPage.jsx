@@ -1,21 +1,26 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import logo from "../../assets/logo.png";
 
 export default function CadastroPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
+  const navigate = useNavigate("/habitos");
 
   function signUp(e) {
     e.preventDefault();
     console.log({ email, password, name, profilePicture });
+    navigate("/");
   }
   return (
     <PageContainer>
-      <img alt="logo" />
-      <Logo>TaskIt</Logo>
+      <Logo>
+        <img src={logo} alt="logo" />
+        TrackIt
+      </Logo>
       <form onSubmit={signUp}>
         <input
           type="email"
@@ -65,7 +70,7 @@ const Btn = styled.button`
   height: 45px;
 `;
 
-const Logo = styled.h1`
+const Logo = styled.div`
   font-family: "Playball";
   font-style: normal;
   font-weight: 400;
@@ -74,7 +79,12 @@ const Logo = styled.h1`
   text-align: center;
   color: #126ba5;
   margin-bottom: 33px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 `;
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;

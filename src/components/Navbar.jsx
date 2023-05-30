@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function App() {
+function Navbar() {
   return (
     <NavContainer>
       <Logo>TaskIt</Logo>
@@ -9,7 +9,7 @@ function App() {
   );
 }
 
-export default App;
+export default Navbar;
 
 const NavContainer = styled.div`
   width: 100%;

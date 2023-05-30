@@ -39,6 +39,7 @@ const Header = styled.div`
 `;
 const PageContainer = styled.div`
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -47,7 +48,6 @@ const PageContainer = styled.div`
   padding-top: 70px;
   padding: calc(70px + 22px) 18px;
   background-color: #f2f2f2;
-  min-height: 100vh;
 
   p {
     margin-top: 29px;
