@@ -43,10 +43,8 @@ const Header = styled.div`
 
 const PageContainer = styled.div`
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   color: #293845;
   padding: calc(70px + 22px) 18px;
   background-color: #f2f2f2;

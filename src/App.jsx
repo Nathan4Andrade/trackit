@@ -7,12 +7,14 @@ import HistoricoPage from "./pages/HistoricoPage/HistoricoPage";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const [isAuthenticated, setIsAuthenticaded] = useState(true);
   return (
     <BrowserRouter>
       {isAuthenticated ? <Navbar /> : ""}
+      <ScrollToTop />
 
       <Routes>
         <Route

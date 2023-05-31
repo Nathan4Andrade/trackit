@@ -2,11 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     body {
-        font-family: 'Lexend Deca';
+        font-family: 'Lexend Deca', sans-serif;
+
     }
 	button {
-
-        
         background: #52b6ff;
         border-radius: 5px;
 		border-style: none;
