@@ -1,21 +1,42 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
+
+import { ThreeDots } from "react-loader-spinner";
+import UserContext from "../../contexts/UserContext";
 
 import logo from "../../assets/logo.png";
 
-export default function LoginPage(props) {
+export default function LoginPage() {
   // eslint-disable-next-line react/prop-types
-  const { setIsAuthenticaded } = props;
+  // const [user, setUser] = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate("/habitos");
+
+  const data = {
+    email: email,
+    password: password,
+  };
 
   function login(e) {
     e.preventDefault();
     console.log({ email, password });
-    navigate("/hoje");
-    setIsAuthenticaded(true);
+    axios
+      .post(`${BASE_URL}auth/login`, data)
+      .then(() => {
+        navigate("/hoje", {
+          state: { email, password },
+        });
+      })
+      .catch(() => {
+        alert("Usuario não encontrado");
+        setLoading(false);
+      });
   }
   return (
     <PageContainer>
@@ -29,14 +50,31 @@ export default function LoginPage(props) {
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={loading}
           required></input>
         <input
           type="password"
           placeholder="senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={loading}
           required></input>
-        <Btn type="submit">Entrar</Btn>
+        <Btn type="submit" disabled={loading}>
+          {loading ? (
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#ffffff"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            <span>Entrar</span>
+          )}
+        </Btn>
       </form>
       <Link to={`/cadastro`}>
         <SignUp>Não tem uma conta? Cadastre-se!</SignUp>

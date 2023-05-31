@@ -5,11 +5,14 @@ import logo from "../../assets/logo.png";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
+import { ThreeDots } from "react-loader-spinner";
+
 export default function CadastroPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate("/habitos");
 
   const data = {
@@ -22,6 +25,7 @@ export default function CadastroPage() {
   function signUp(e) {
     e.preventDefault();
     console.log(data);
+    setLoading(true);
     axios
       .post(`${BASE_URL}auth/sign-up`, data)
       .then(() => {
@@ -29,7 +33,10 @@ export default function CadastroPage() {
           state: { name, email, password, image },
         });
       })
-      .catch(() => alert("Usuario já cadastrado"));
+      .catch(() => {
+        alert("Usuario já cadastrado");
+        setLoading(false);
+      });
   }
   return (
     <PageContainer>
@@ -43,25 +50,44 @@ export default function CadastroPage() {
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={loading}
           required></input>
         <input
           type="password"
           placeholder="senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={loading}
           required></input>
         <input
           type="text"
           placeholder="nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          disabled={loading}
           required></input>
         <input
           type="text"
           placeholder="foto"
           value={image}
-          onChange={(e) => setImage(e.target.value)}></input>
-        <Btn type="submit">Cadastrar</Btn>
+          onChange={(e) => setImage(e.target.value)}
+          disabled={loading}></input>
+        <Btn type="submit" disabled={loading}>
+          {loading ? (
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#ffffff"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            <span>Cadastrar</span>
+          )}
+        </Btn>
       </form>
       <Link to={`/`}>
         <Login>Já tem uma conta? Faça login!</Login>

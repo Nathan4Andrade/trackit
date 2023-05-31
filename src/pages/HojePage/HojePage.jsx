@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import Habito from "./Habito";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export default function HojePage() {
   return (
     <PageContainer>
+      <Navbar />
       <Header>
         <h2>Segunda-Feira, 17/05</h2>
         <h3>Nenhum hábito concluído ainda</h3>
@@ -12,6 +15,7 @@ export default function HojePage() {
       <Habito></Habito>
       <Habito></Habito>
       <Habito></Habito>
+      <Footer />
     </PageContainer>
   );
 }

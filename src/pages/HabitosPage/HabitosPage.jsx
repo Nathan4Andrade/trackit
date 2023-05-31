@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import CriarHabito from "./CriarHabito";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export default function HabitosPage() {
   return (
     <PageContainer>
+      <Navbar />
       <Header>
         <h2>Meus hábitos</h2>
         <button>+</button>
@@ -14,6 +17,7 @@ export default function HabitosPage() {
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
         começar a trackear!
       </p>
+      <Footer />
     </PageContainer>
   );
 }

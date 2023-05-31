@@ -3,7 +3,7 @@ import styled from "styled-components";
 function Navbar() {
   return (
     <NavContainer>
-      <Logo>TaskIt</Logo>
+      <Logo>TrackIt</Logo>
       <ProfilePicture src="https://i.pinimg.com/originals/8a/8a/10/8a8a10f4e83b2b319f773b0028e5ed08.jpg" />
     </NavContainer>
   );
