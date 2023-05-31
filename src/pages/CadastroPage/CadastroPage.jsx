@@ -2,18 +2,34 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.png";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 export default function CadastroPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [image, setImage] = useState("");
   const navigate = useNavigate("/habitos");
+
+  const data = {
+    name: name,
+    email: email,
+    password: password,
+    image: image,
+  };
 
   function signUp(e) {
     e.preventDefault();
-    console.log({ email, password, name, profilePicture });
-    navigate("/");
+    console.log(data);
+    axios
+      .post(`${BASE_URL}auth/sign-up`, data)
+      .then(() => {
+        navigate("/", {
+          state: { name, email, password, image },
+        });
+      })
+      .catch(() => alert("Usuario já cadastrado"));
   }
   return (
     <PageContainer>
@@ -43,8 +59,8 @@ export default function CadastroPage() {
         <input
           type="text"
           placeholder="foto"
-          value={profilePicture}
-          onChange={(e) => setProfilePicture(e.target.value)}></input>
+          value={image}
+          onChange={(e) => setImage(e.target.value)}></input>
         <Btn type="submit">Cadastrar</Btn>
       </form>
       <Link to={`/`}>

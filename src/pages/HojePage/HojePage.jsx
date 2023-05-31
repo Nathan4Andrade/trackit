@@ -43,6 +43,7 @@ const Header = styled.div`
 
 const PageContainer = styled.div`
   display: flex;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   color: #293845;
