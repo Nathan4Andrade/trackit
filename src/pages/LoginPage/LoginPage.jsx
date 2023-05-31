@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
 import { ThreeDots } from "react-loader-spinner";
-import UserContext from "../../contexts/UserContext";
 
 import logo from "../../assets/logo.png";
 
