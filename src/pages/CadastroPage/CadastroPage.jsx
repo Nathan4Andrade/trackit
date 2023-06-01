@@ -1,37 +1,35 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.png";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
+import { Context } from "../../contexts/Context";
 
 import { ThreeDots } from "react-loader-spinner";
 
 export default function CadastroPage() {
+  const { image, setImage, loading, setLoading } = useContext(Context);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate("/");
 
-  const data = {
-    name: name,
-    email: email,
-    password: password,
-    image: image,
-  };
+  const navigate = useNavigate("/");
 
   function signUp(e) {
     e.preventDefault();
-    console.log(data);
     setLoading(true);
+    const signUpInfo = {
+      name: name,
+      email: email,
+      password: password,
+      image: image,
+    };
     axios
-      .post(`${BASE_URL}auth/sign-up`, data)
+      .post(`${BASE_URL}auth/sign-up`, signUpInfo)
       .then(() => {
-        navigate("/", {
-          state: { name, email, password, image },
-        });
+        navigate("/");
       })
       .catch((erro) => {
         console.log(erro);

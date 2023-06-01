@@ -7,19 +7,35 @@ import HistoricoPage from "./pages/HistoricoPage/HistoricoPage";
 
 import ScrollToTop from "./components/ScrollToTop";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
+import { useState } from "react";
+import { Context } from "./contexts/Context";
 
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/cadastro" element={<CadastroPage />} />
-        <Route path="/habitos" element={<HabitosPage />} />
-        <Route path="/hoje" element={<HojePage />} />
-        <Route path="/historico" element={<HistoricoPage />} />
-      </Routes>
-    </BrowserRouter>
+function App() {
+  const [token, setToken] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState("");
+  return (
+    <Context.Provider
+      value={{
+        token,
+        setToken,
+        image,
+        setImage,
+        loading,
+        setLoading,
+      }}>
+      <BrowserRouter>
+        <ScrollToTop />
+
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/cadastro" element={<CadastroPage />} />
+          <Route path="/habitos" element={<HabitosPage />} />
+          <Route path="/hoje" element={<HojePage />} />
+          <Route path="/historico" element={<HistoricoPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Context.Provider>
   );
 }
 

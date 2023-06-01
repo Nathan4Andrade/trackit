@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import { Context } from "../contexts/Context";
+import { useContext } from "react";
 
 function Navbar() {
+  const { image } = useContext(Context);
+
   return (
     <NavContainer>
       <Logo>TrackIt</Logo>
-      <ProfilePicture src="img.png" />
+      <ProfilePicture src={image} />
     </NavContainer>
   );
 }

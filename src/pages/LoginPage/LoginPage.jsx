@@ -1,36 +1,36 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
+import { Context } from "../../contexts/Context";
 import { ThreeDots } from "react-loader-spinner";
 
 import logo from "../../assets/logo.png";
 
 export default function LoginPage() {
-  // eslint-disable-next-line react/prop-types
-  // const [user, setUser] = useContext(UserContext);
+  const { setImage, loading, setLoading, setToken } = useContext(Context);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate("/habitos");
 
-  const data = {
-    email: email,
-    password: password,
-  };
+  const navigate = useNavigate();
 
   function login(e) {
     e.preventDefault();
     console.log({ email, password });
+    setLoading(true);
+    const loginInfo = {
+      email: email,
+      password: password,
+    };
     axios
-      .post(`${BASE_URL}auth/login`, data)
-      .then(() => {
-        navigate("/hoje", {
-          state: { email, password },
-        });
+      .post(`${BASE_URL}auth/login`, loginInfo)
+      .then((resp) => {
+        setImage(resp.data.image);
+        setToken(resp.data.token);
+        navigate("/hoje");
       })
       .catch(() => {
         alert("Usuario não encontrado");
