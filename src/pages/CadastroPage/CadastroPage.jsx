@@ -13,7 +13,7 @@ export default function CadastroPage() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate("/habitos");
+  const navigate = useNavigate("/");
 
   const data = {
     name: name,
@@ -33,7 +33,8 @@ export default function CadastroPage() {
           state: { name, email, password, image },
         });
       })
-      .catch(() => {
+      .catch((erro) => {
+        console.log(erro);
         alert("Usuario já cadastrado");
         setLoading(false);
       });

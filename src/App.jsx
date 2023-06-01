@@ -6,30 +6,20 @@ import HojePage from "./pages/HojePage/HojePage";
 import HistoricoPage from "./pages/HistoricoPage/HistoricoPage";
 
 import ScrollToTop from "./components/ScrollToTop";
-import UserContext from "./contexts/UserContext";
-import { useState } from "react";
 
 function App() {
-  //const [isAuthenticated, setIsAuthenticaded] = useState(true);
-  const [user, setUser] = useState("Nathan");
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        setUser,
-      }}>
-      <BrowserRouter>
-        <ScrollToTop />
+    <BrowserRouter>
+      <ScrollToTop />
 
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/cadastro" element={<CadastroPage />} />
-          <Route path="/habitos" element={<HabitosPage />} />
-          <Route path="/hoje" element={<HojePage />} />
-          <Route path="/historico" element={<HistoricoPage />} />
-        </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/cadastro" element={<CadastroPage />} />
+        <Route path="/habitos" element={<HabitosPage />} />
+        <Route path="/hoje" element={<HojePage />} />
+        <Route path="/historico" element={<HistoricoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

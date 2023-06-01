@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <NavContainer>
       <Logo>TrackIt</Logo>
-      <ProfilePicture src="https://i.pinimg.com/originals/8a/8a/10/8a8a10f4e83b2b319f773b0028e5ed08.jpg" />
+      <ProfilePicture src="img.png" />
     </NavContainer>
   );
 }
