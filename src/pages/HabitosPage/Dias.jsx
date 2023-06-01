@@ -23,6 +23,8 @@ const Dia = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 4px;
+  color: #cfcfcf;
 
   font-style: normal;
   font-weight: 400;
@@ -31,6 +33,10 @@ const Dia = styled.div`
   /* identical to box height */
 
   color: #dbdbdb;
+  :nth-child(even) {
+    background-color: #cfcfcf;
+    color: #ffffff;
+  }
 `;
 const SCDias = styled.div`
   display: flex;

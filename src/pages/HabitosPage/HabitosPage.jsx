@@ -2,21 +2,36 @@ import styled from "styled-components";
 import CriarHabito from "./CriarHabito";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useState } from "react";
+import ListarHabito from "./ListarHabito";
 
 export default function HabitosPage() {
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [showForm, setShowForm] = useState();
+
+  function addHabito() {
+    console.log("adicionar habito");
+    setShowForm(true);
+    setIsEmpty(false);
+  }
   return (
     <PageContainer>
       <Navbar />
       <Header>
         <h2>Meus hábitos</h2>
-        <button>+</button>
+        <button onClick={addHabito}>+</button>
       </Header>
-      <CriarHabito></CriarHabito>
+      {showForm ? <CriarHabito></CriarHabito> : ""}
 
-      <p>
-        Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-        começar a trackear!
-      </p>
+      {isEmpty ? (
+        <p>
+          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
+          começar a trackear!
+        </p>
+      ) : (
+        <ListarHabito></ListarHabito>
+      )}
+
       <Footer />
     </PageContainer>
   );

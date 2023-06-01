@@ -3,7 +3,7 @@ import Dias from "./Dias";
 
 export default function CriarHabito() {
   return (
-    <SCHabito>
+    <CriarHabitoContainer>
       <input placeholder="nome do hábito" />
       <Dias />
 
@@ -11,10 +11,10 @@ export default function CriarHabito() {
         <button>Cancelar</button>
         <button>Salvar</button>
       </section>
-    </SCHabito>
+    </CriarHabitoContainer>
   );
 }
-const SCHabito = styled.div`
+const CriarHabitoContainer = styled.div`
   margin-bottom: 10px;
   background-color: white;
   padding: 18px 16px 15px 19px;

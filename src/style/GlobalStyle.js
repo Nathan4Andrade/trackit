@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 		justify-content: center;
 		text-align: center;
 		color: #FFFFFF;
-		padding: 0 20px;
+		padding: 10px 20px;
         box-sizing: border-box;
         
 		&:disabled {
