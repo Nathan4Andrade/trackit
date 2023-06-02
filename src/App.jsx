@@ -14,7 +14,11 @@ function App() {
   const [token, setToken] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState("");
-  
+  const [disable, setDisable] = useState("");
+  const [name, setName] = useState("");
+  const [days, setDays] = useState([]);
+  const [habitList, setHabitList] = useState([]);
+
   return (
     <Context.Provider
       value={{
@@ -24,6 +28,14 @@ function App() {
         setImage,
         loading,
         setLoading,
+        name,
+        setName,
+        disable,
+        setDisable,
+        days,
+        setDays,
+        habitList,
+        setHabitList,
       }}>
       <BrowserRouter>
         <ScrollToTop />

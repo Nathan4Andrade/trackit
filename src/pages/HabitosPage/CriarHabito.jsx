@@ -1,38 +1,143 @@
 import styled from "styled-components";
-import Dias from "./Dias";
+import { useContext } from "react";
+import { Context } from "../../contexts/Context";
+import diasdasemana from "../../constants/diasdasemana";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 export default function CriarHabito() {
+  const { token, name, setName, days, setDays, disable, setDisable } =
+    useContext(Context);
+
+  function chooseDays(id) {
+    if (days.includes(id)) {
+      setDays(
+        [...days].filter((diaEscolhido) => {
+          if (diaEscolhido !== id) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
+    } else {
+      setDays([...days, id]);
+    }
+  }
+  function adicionar(e) {
+    e.preventDefault();
+    console.log(diasdasemana);
+    setDisable(true);
+    if (days.length > 0 && name.length > 0) {
+      const add = { name, days };
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      axios
+        .post(`${BASE_URL}habits`, add, config)
+        .then((resposta) => {
+          console.log(
+            "resposta.data em: POST de Adicionar novo Habito",
+            resposta.data
+          );
+          setDays([]); //volta a ficar limpo para adc um novo conjunto de dias
+          setName("");
+          // setRenderAdd(false);
+          // reloadAfterAddOrDelete();
+          setDisable(false);
+        })
+        .catch((erro) => {
+          alert(erro.response.data.message);
+          setDisable(false);
+          console.log(erro);
+        });
+    } else {
+      alert("Escreve o nome do hábito e escolha pelo menos um dia da semana");
+      setDisable(false);
+    }
+  }
   return (
     <CriarHabitoContainer>
-      <input placeholder="nome do hábito" />
-      <Dias />
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="nome do hábito"
+        disabled={disable}
+        required
+      />
+      <ListaDias>
+        {diasdasemana.map((buttonDia) => (
+          <Dia
+            key={buttonDia.id}
+            onClick={() => chooseDays(buttonDia.id)}
+            diaSelecionado={days.includes(buttonDia.id)}
+            disabled={disable}>
+            {buttonDia.day}
+          </Dia>
+        ))}
+      </ListaDias>
 
-      <section>
+      <ListaBotoes>
         <button>Cancelar</button>
-        <button>Salvar</button>
-      </section>
+        <button disabled={disable} onClick={adicionar}>
+          Salvar
+        </button>
+      </ListaBotoes>
     </CriarHabitoContainer>
   );
 }
+
+const ListaBotoes = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  button {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    height: 35px;
+  }
+  button:nth-child(1) {
+    background-color: white;
+    color: #52b6ff;
+  }
+`;
 const CriarHabitoContainer = styled.div`
   margin-bottom: 10px;
   background-color: white;
   padding: 18px 16px 15px 19px;
   border-radius: 5px;
-  section {
-    display: flex;
-    justify-content: flex-end;
-    button {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 20px;
-      text-align: center;
-      height: 35px;
-    }
-    button:nth-child(1) {
-      background-color: white;
-      color: #52b6ff;
-    }
-  }
+`;
+
+const Dia = styled.button`
+  border: 1px solid #d5d5d5;
+  padding: 0%;
+
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  color: ${(props) => (props.diaSelecionado === true ? "#FFFFFF" : "#DBDBDB")};
+  background-color: ${(props) =>
+    props.diaSelecionado === true ? "#CFCFCF" : "#FFFFFF"};
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19.976px;
+  line-height: 25px;
+  /* identical to box height */
+`;
+const ListaDias = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 29px;
 `;

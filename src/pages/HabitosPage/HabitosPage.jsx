@@ -2,17 +2,58 @@ import styled from "styled-components";
 import CriarHabito from "./CriarHabito";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { useState } from "react";
-import ListarHabito from "./ListarHabito";
+import { useContext, useEffect, useState } from "react";
+
+import { Context } from "../../contexts/Context";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
+import Habito from "./Habito";
 
 export default function HabitosPage() {
-  const [isEmpty, setIsEmpty] = useState(true);
   const [showForm, setShowForm] = useState();
+  const { token, habitList, setHabitList } = useContext(Context);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`${BASE_URL}habits`, config)
+      .then((resposta) => {
+        setHabitList(resposta.data);
+
+        console.log(resposta.data);
+      })
+      .catch((erro) => {
+        alert(erro.response.data.message);
+        console.log(erro);
+      });
+  }, []);
+
+  function reload() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`${BASE_URL}habits`, config)
+      .then((resposta) => {
+        setHabitList(resposta.data);
+
+        console.log(resposta.data);
+      })
+      .catch((erro) => {
+        alert(erro.response.data.message);
+        console.log(erro);
+      });
+  }
 
   function addHabito() {
     console.log("adicionar habito");
     setShowForm(true);
-    setIsEmpty(false);
   }
   return (
     <PageContainer>
@@ -23,13 +64,19 @@ export default function HabitosPage() {
       </Header>
       {showForm ? <CriarHabito></CriarHabito> : ""}
 
-      {isEmpty ? (
+      {habitList.length === 0 ? (
         <p>
           Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
           começar a trackear!
         </p>
       ) : (
-        <ListarHabito></ListarHabito>
+        habitList.map((habito) => (
+          <Habito
+            key={habito.id}
+            id={habito.id}
+            name={habito.name}
+            days={habito.days}></Habito>
+        ))
       )}
 
       <Footer />

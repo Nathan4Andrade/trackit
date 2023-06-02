@@ -47,12 +47,14 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="email"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
           required></input>
         <input
           type="password"
+          id="password"
           placeholder="senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
