@@ -113,6 +113,7 @@ const Logo = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 100px;
 `;
 const PageContainer = styled.div`
   display: flex;
@@ -120,6 +121,6 @@ const PageContainer = styled.div`
   align-items: center;
   text-align: center;
   color: #293845;
-  margin-top: 30px;
-  padding-top: 70px;
+  height: 100vh;
+  background-color: #ffffff;
 `;

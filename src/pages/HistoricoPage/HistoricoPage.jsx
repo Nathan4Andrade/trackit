@@ -43,10 +43,9 @@ const Header = styled.div`
 
 const PageContainer = styled.div`
   display: flex;
-  height: 100vh;
   flex-direction: column;
   align-items: center;
   color: #293845;
-  padding: calc(70px + 22px) 18px;
+  padding: 92px 18px 100px 18px;
   background-color: #f2f2f2;
 `;

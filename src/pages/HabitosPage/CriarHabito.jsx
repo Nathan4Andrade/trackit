@@ -5,9 +5,11 @@ import diasdasemana from "../../constants/diasdasemana";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
-export default function CriarHabito() {
+export default function CriarHabito(props) {
   const { token, name, setName, days, setDays, disable, setDisable } =
     useContext(Context);
+
+  const { reload } = props;
 
   function chooseDays(id) {
     if (days.includes(id)) {
@@ -49,6 +51,7 @@ export default function CriarHabito() {
           // setRenderAdd(false);
           // reloadAfterAddOrDelete();
           setDisable(false);
+          reload();
         })
         .catch((erro) => {
           alert(erro.response.data.message);

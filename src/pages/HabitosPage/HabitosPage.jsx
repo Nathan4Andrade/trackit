@@ -49,6 +49,7 @@ export default function HabitosPage() {
         alert(erro.response.data.message);
         console.log(erro);
       });
+    setShowForm(false);
   }
 
   function addHabito() {
@@ -62,7 +63,7 @@ export default function HabitosPage() {
         <h2>Meus hábitos</h2>
         <button onClick={addHabito}>+</button>
       </Header>
-      {showForm ? <CriarHabito></CriarHabito> : ""}
+      {showForm ? <CriarHabito reload={reload}></CriarHabito> : ""}
 
       {habitList.length === 0 ? (
         <p>
@@ -105,11 +106,10 @@ const Header = styled.div`
 `;
 const PageContainer = styled.div`
   display: flex;
-  height: 100vh;
   flex-direction: column;
   align-items: center;
   color: #293845;
-  padding: calc(70px + 22px) 18px;
+  padding: 92px 18px 100px 18px;
   background-color: #f2f2f2;
 
   p {
