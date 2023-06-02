@@ -3,7 +3,6 @@ import CriarHabito from "./CriarHabito";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useContext, useEffect, useState } from "react";
-
 import { Context } from "../../contexts/Context";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
