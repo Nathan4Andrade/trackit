@@ -56,6 +56,7 @@ export default function HabitosPage() {
     console.log("adicionar habito");
     setShowForm(true);
   }
+
   return (
     <PageContainer>
       <Navbar />
@@ -76,7 +77,8 @@ export default function HabitosPage() {
             key={habito.id}
             id={habito.id}
             name={habito.name}
-            days={habito.days}></Habito>
+            days={habito.days}
+            reload={reload}></Habito>
         ))
       )}
 
@@ -113,7 +115,7 @@ const PageContainer = styled.div`
   background-color: #f2f2f2;
 
   p {
-    margin-top: 29px;
+    margin-top: 9px;
     font-style: normal;
     font-weight: 400;
     font-size: 17px;

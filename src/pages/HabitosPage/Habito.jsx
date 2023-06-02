@@ -5,10 +5,38 @@ import diasdasemana from "../../constants/diasdasemana";
 import trash from "../../assets/trash.png";
 import { Context } from "../../contexts/Context";
 import { useContext } from "react";
+import { BASE_URL } from "../../constants/urls";
+import axios from "axios";
 
 export default function Habito(props) {
   const { token } = useContext(Context);
-  const { id, name, days } = props;
+  const { id, name, days, reload } = props;
+
+  function deleteHabito() {
+    console.log("deletar habito");
+    if (window.confirm("Tem certeza que quer deletar este item?")) {
+      const URL = `${BASE_URL}habits/${id}`;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      axios
+        .delete(URL, config)
+        .then((resp) => {
+          reload();
+          console.log(resp);
+        })
+        .catch((erro) => {
+          alert(erro.response.data.message);
+          console.log(erro);
+        });
+    } else {
+      console.log("cancelado");
+    }
+  }
   return (
     <HabitoContainer>
       <div>
@@ -27,7 +55,7 @@ export default function Habito(props) {
 
       <div>
         <button>
-          <img src={trash} />
+          <img src={trash} onClick={deleteHabito} />
         </button>
       </div>
     </HabitoContainer>
