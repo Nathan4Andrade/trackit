@@ -32,7 +32,6 @@ export default function LoginPage() {
         setToken(resp.data.token);
         setUser(resp.data);
         console.log(resp.data);
-        localStorage.setItem("user", JSON.stringify(resp.data));
         navigate("/hoje");
       })
       .catch(() => {

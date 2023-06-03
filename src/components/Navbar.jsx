@@ -4,16 +4,22 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { image } = useContext(Context);
+  const { image, token } = useContext(Context);
 
   return (
-    <NavContainer data-test="header">
-      <Link to={`/hoje`}>
-        <Logo>TrackIt</Logo>
-      </Link>
+    <>
+      {token === "" ? (
+        ""
+      ) : (
+        <NavContainer data-test="header">
+          <Link to={`/hoje`}>
+            <Logo>TrackIt</Logo>
+          </Link>
 
-      <ProfilePicture src={image} data-test="avatar" />
-    </NavContainer>
+          <ProfilePicture src={image} data-test="avatar" />
+        </NavContainer>
+      )}
+    </>
   );
 }
 
@@ -38,7 +44,7 @@ const NavContainer = styled.header`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   font-family: "Playball";
   font-style: normal;
   font-weight: 400;
