@@ -19,6 +19,7 @@ function App() {
   const [days, setDays] = useState([]);
   const [habitList, setHabitList] = useState([]);
   const [todayList, setTodayList] = useState([]);
+  const [doneList, setDoneList] = useState([]);
 
   return (
     <Context.Provider
@@ -39,6 +40,8 @@ function App() {
         setHabitList,
         todayList,
         setTodayList,
+        doneList,
+        setDoneList,
       }}>
       <BrowserRouter>
         <ScrollToTop />

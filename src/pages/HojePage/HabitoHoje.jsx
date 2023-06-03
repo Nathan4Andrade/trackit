@@ -18,6 +18,7 @@ export default function HabitoHoje(props) {
       },
     };
     const body = {};
+
     if (isChecked) {
       axios
         .post(`${BASE_URL}habits/${id}/uncheck`, body, config)

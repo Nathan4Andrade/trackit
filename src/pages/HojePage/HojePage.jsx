@@ -11,7 +11,8 @@ import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
 
 export default function HojePage() {
-  const { token, todayList, setTodayList } = useContext(Context);
+  const { token, todayList, setTodayList, doneList, setDoneList } =
+    useContext(Context);
 
   function reload() {
     const config = {
@@ -21,10 +22,10 @@ export default function HojePage() {
     };
     axios
       .get(`${BASE_URL}habits/today`, config)
-      .then((resposta) => {
-        setTodayList(resposta.data);
-
-        console.log(resposta.data);
+      .then((resp) => {
+        setTodayList(resp.data);
+        setDoneList(resp.data.filter((habit) => habit.done == true));
+        console.log(resp.data);
       })
       .catch((erro) => {
         alert(erro.response.data.message);
@@ -54,6 +55,7 @@ export default function HojePage() {
       .get(`${BASE_URL}habits/today`, config)
       .then((resp) => {
         setTodayList(resp.data);
+        setDoneList(resp.data.filter((habit) => habit.done == true));
         console.log(resp.data);
       })
       .catch((erro) => {
@@ -65,7 +67,17 @@ export default function HojePage() {
       <Navbar />
       <Header>
         <h2>{today()}</h2>
-        <h3>Nenhum hábito concluído ainda</h3>
+        {doneList.length === 0 ? (
+          <Percentage isZero={doneList.length}>
+            Nenhum hábito concluído ainda
+          </Percentage>
+        ) : (
+          <Percentage isZero={doneList.length}>
+            {Math.floor(
+              (Number(doneList.length) / Number(todayList.length)) * 100
+            ) + `% dos hábitos concluídos`}{" "}
+          </Percentage>
+        )}
       </Header>
       {todayList.map((habitoHoje) => (
         <HabitoHoje
@@ -84,6 +96,14 @@ export default function HojePage() {
   );
 }
 
+const Percentage = styled.h3`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17.976px;
+  line-height: 22px;
+  color: ${(props) => (props.isZero === 0 ? "#666666" : "#8FC549")};
+`;
+
 const Header = styled.div`
   width: 100%;
   display: flex;
@@ -98,14 +118,6 @@ const Header = styled.div`
     line-height: 29px;
 
     color: #126ba5;
-  }
-  h3 {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17.976px;
-    line-height: 22px;
-
-    color: #bababa;
   }
 `;
 
