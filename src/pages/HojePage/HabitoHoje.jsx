@@ -42,8 +42,21 @@ export default function HabitoHoje(props) {
     <HabitoContainer>
       <Info>
         <h4>{name}</h4>
-        <p>Sequência atual: {currentSequence}</p>
-        <p>Seu recorde: {highestSequence}</p>
+        <p>
+          Sequência atual:{" "}
+          <Sequency done={done}>
+            {currentSequence} {currentSequence === 1 ? "dia" : "dias"}
+          </Sequency>
+        </p>
+        <p>
+          Seu recorde:{" "}
+          <Record
+            colorRecord={
+              highestSequence > 0 && highestSequence === currentSequence
+            }>
+            {highestSequence} {highestSequence === 1 ? "dia" : "dias"}
+          </Record>
+        </p>
       </Info>
       <Checkbox done={done}>
         <img src={checkbox} alt="checkbox" onClick={checkHabit} />
@@ -51,6 +64,13 @@ export default function HabitoHoje(props) {
     </HabitoContainer>
   );
 }
+
+const Record = styled.span`
+  color: ${(props) => (props.colorRecord ? "#8FC549" : "#666666")};
+`;
+const Sequency = styled.span`
+  color: ${(props) => (props.done ? "#8FC549" : "#666666")};
+`;
 const Info = styled.div`
   display: flex;
   flex-direction: column;
