@@ -12,22 +12,20 @@ import { ContextProvider } from "./contexts/Context";
 
 function App() {
   return (
-    <AuthProvider>
-      <ContextProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Navbar />
+    <ContextProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Navbar />
 
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/cadastro" element={<CadastroPage />} />
-            <Route path="/habitos" element={<HabitosPage />} />
-            <Route path="/hoje" element={<HojePage />} />
-            <Route path="/historico" element={<HistoricoPage />} />
-          </Routes>
-        </BrowserRouter>
-      </ContextProvider>
-    </AuthProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/cadastro" element={<CadastroPage />} />
+          <Route path="/habitos" element={<HabitosPage />} />
+          <Route path="/hoje" element={<HojePage />} />
+          <Route path="/historico" element={<HistoricoPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
   );
 }
 
