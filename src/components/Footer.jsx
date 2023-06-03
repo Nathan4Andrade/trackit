@@ -4,21 +4,10 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useContext } from "react";
 import { Context } from "../contexts/Context";
-import axios from "axios";
-import { BASE_URL } from "../constants/urls";
-import { useEffect } from "react";
 
 function Footer() {
-  const {
-    token,
-    doneList,
-    setTodayList,
-    setDoneList,
-    todayList,
-    percentage,
-    setPercentage,
-  } = useContext(Context);
-
+  const { percentage, setPercentage, todayList, doneList } =
+    useContext(Context);
   setPercentage(
     Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
   );

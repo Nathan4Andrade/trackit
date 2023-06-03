@@ -7,7 +7,7 @@ import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
 
 export default function HabitoHoje(props) {
-  const { token } = useContext(Context);
+  const { token, setPercentage, todayList, doneList } = useContext(Context);
   const { id, name, done, currentSequence, highestSequence, reload } = props;
   const [isChecked, setIsChecked] = useState(done);
 
@@ -24,6 +24,12 @@ export default function HabitoHoje(props) {
         .post(`${BASE_URL}habits/${id}/uncheck`, body, config)
         .then((resp) => {
           setIsChecked(!isChecked);
+          setPercentage(
+            Math.floor(
+              (Number(doneList.length) / Number(todayList.length)) * 100
+            )
+          );
+
           reload();
           console.log(resp);
         })
@@ -33,6 +39,11 @@ export default function HabitoHoje(props) {
         .post(`${BASE_URL}habits/${id}/check`, body, config)
         .then((resp) => {
           setIsChecked(!isChecked);
+          setPercentage(
+            Math.floor(
+              (Number(doneList.length) / Number(todayList.length)) * 100
+            )
+          );
           reload();
           console.log(resp);
         })
@@ -85,7 +96,7 @@ const Checkbox = styled.div`
   border: 1px solid #e7e7e7;
   border-radius: 5px;
   margin-left: 35px;
-
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,6 +117,8 @@ const HabitoContainer = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
+    width: 170px;
+    overflow: auto;
   }
 
   p {

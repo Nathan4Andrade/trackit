@@ -75,6 +75,8 @@ const HabitoContainer = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
+    overflow: hidden;
+    width: 170px;
 
     color: #666666;
     margin-bottom: 8px;
@@ -96,7 +98,7 @@ const Dia = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 4px;
-
+  cursor: pointer;
   font-style: normal;
   font-weight: 400;
   font-size: 19.976px;
@@ -110,5 +112,4 @@ const Dia = styled.div`
 const ListaDias = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 29px;
 `;

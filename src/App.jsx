@@ -10,7 +10,6 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import { useState } from "react";
 import { Context } from "./contexts/Context";
-import Footer from "./components/Footer";
 
 function App() {
   const [token, setToken] = useState("");
@@ -22,9 +21,7 @@ function App() {
   const [habitList, setHabitList] = useState([]);
   const [todayList, setTodayList] = useState([]);
   const [doneList, setDoneList] = useState([]);
-  const [percentage, setPercentage] = useState(
-    (Number(doneList.length) / Number(todayList.length)) * 100
-  );
+  const [percentage, setPercentage] = useState(0);
 
   return (
     <Context.Provider
@@ -61,7 +58,6 @@ function App() {
           <Route path="/hoje" element={<HojePage />} />
           <Route path="/historico" element={<HistoricoPage />} />
         </Routes>
-        {token === "" ? "" : <Footer />}
       </BrowserRouter>
     </Context.Provider>
   );

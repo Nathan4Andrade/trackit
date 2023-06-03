@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 		color: #FFFFFF;
 		padding: 10px 20px;
         box-sizing: border-box;
+		cursor: pointer;
         
 		&:disabled {
 			background-color: lightgray;

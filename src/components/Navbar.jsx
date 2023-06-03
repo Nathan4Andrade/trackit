@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { Context } from "../contexts/Context";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { image } = useContext(Context);
 
   return (
     <NavContainer>
-      <Logo>TrackIt</Logo>
+      <Link to={`/hoje`}>
+        <Logo>TrackIt</Logo>
+      </Link>
+
       <ProfilePicture src={image} />
     </NavContainer>
   );
@@ -34,7 +38,7 @@ const NavContainer = styled.div`
   }
 `;
 
-const Logo = styled.h1`
+const Logo = styled.a`
   font-family: "Playball";
   font-style: normal;
   font-weight: 400;

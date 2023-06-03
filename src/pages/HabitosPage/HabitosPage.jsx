@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import CriarHabito from "./CriarHabito";
 import { useContext, useEffect, useState } from "react";
@@ -5,6 +6,7 @@ import { Context } from "../../contexts/Context";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import Habito from "./Habito";
+import Footer from "../../components/Footer";
 
 export default function HabitosPage() {
   const [showForm, setShowForm] = useState();
@@ -93,6 +95,7 @@ export default function HabitosPage() {
             reload={reload}></Habito>
         ))
       )}
+      <Footer />
     </PageContainer>
   );
 }

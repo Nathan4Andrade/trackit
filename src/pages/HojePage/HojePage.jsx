@@ -8,6 +8,7 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
+import Footer from "../../components/Footer";
 
 export default function HojePage() {
   const {
@@ -99,6 +100,7 @@ export default function HojePage() {
           reload={reload}
         />
       ))}
+      <Footer />
     </PageContainer>
   );
 }
