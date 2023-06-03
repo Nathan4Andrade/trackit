@@ -4,11 +4,13 @@ import CadastroPage from "./pages/CadastroPage/CadastroPage";
 import HabitosPage from "./pages/HabitosPage/HabitosPage";
 import HojePage from "./pages/HojePage/HojePage";
 import HistoricoPage from "./pages/HistoricoPage/HistoricoPage";
+import Navbar from "./components/Navbar";
 
 import ScrollToTop from "./components/ScrollToTop";
 
 import { useState } from "react";
 import { Context } from "./contexts/Context";
+import Footer from "./components/Footer";
 
 function App() {
   const [token, setToken] = useState("");
@@ -20,6 +22,9 @@ function App() {
   const [habitList, setHabitList] = useState([]);
   const [todayList, setTodayList] = useState([]);
   const [doneList, setDoneList] = useState([]);
+  const [percentage, setPercentage] = useState(
+    (Number(doneList.length) / Number(todayList.length)) * 100
+  );
 
   return (
     <Context.Provider
@@ -42,9 +47,12 @@ function App() {
         setTodayList,
         doneList,
         setDoneList,
+        percentage,
+        setPercentage,
       }}>
       <BrowserRouter>
         <ScrollToTop />
+        {token === "" ? "" : <Navbar />}
 
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -53,6 +61,7 @@ function App() {
           <Route path="/hoje" element={<HojePage />} />
           <Route path="/historico" element={<HistoricoPage />} />
         </Routes>
+        {token === "" ? "" : <Footer />}
       </BrowserRouter>
     </Context.Provider>
   );

@@ -1,7 +1,28 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { useContext } from "react";
+import { Context } from "../contexts/Context";
+import axios from "axios";
+import { BASE_URL } from "../constants/urls";
+import { useEffect } from "react";
 
 function Footer() {
+  const {
+    token,
+    doneList,
+    setTodayList,
+    setDoneList,
+    todayList,
+    percentage,
+    setPercentage,
+  } = useContext(Context);
+
+  setPercentage(
+    Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
+  );
+
   return (
     <FooterContainer>
       <Option>
@@ -9,7 +30,17 @@ function Footer() {
       </Option>
       <ProgressBar>
         <Link to="/hoje">
-          <span>Hoje</span>
+          <CircularProgressbar
+            value={percentage}
+            text={`Hoje`}
+            background
+            backgroundPadding={6}
+            styles={buildStyles({
+              backgroundColor: "#52B6FF",
+              textColor: "#fff",
+              pathColor: "#fff",
+              trailColor: "transparent",
+            })}></CircularProgressbar>
         </Link>
       </ProgressBar>
       <Option>

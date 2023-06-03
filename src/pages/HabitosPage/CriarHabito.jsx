@@ -7,8 +7,17 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
 export default function CriarHabito(props) {
-  const { token, name, setName, days, setDays, disable, setDisable } =
-    useContext(Context);
+  const {
+    token,
+    name,
+    setName,
+    days,
+    setDays,
+    disable,
+    setDisable,
+    setTodayList,
+    setDoneList,
+  } = useContext(Context);
 
   const { reload, setShowForm } = props;
 
@@ -58,6 +67,17 @@ export default function CriarHabito(props) {
         .catch((erro) => {
           alert(erro.response.data.message);
           setDisable(false);
+          console.log(erro);
+        });
+      axios
+        .get(`${BASE_URL}habits/today`, config)
+        .then((resp) => {
+          setTodayList(resp.data);
+          setDoneList(resp.data.filter((habit) => habit.done == true));
+          console.log(resp.data);
+        })
+        .catch((erro) => {
+          alert(erro.response.data.message);
           console.log(erro);
         });
     } else {

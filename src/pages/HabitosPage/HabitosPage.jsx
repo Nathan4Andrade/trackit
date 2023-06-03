@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import CriarHabito from "./CriarHabito";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../contexts/Context";
 import axios from "axios";
@@ -10,7 +8,8 @@ import Habito from "./Habito";
 
 export default function HabitosPage() {
   const [showForm, setShowForm] = useState();
-  const { token, habitList, setHabitList } = useContext(Context);
+  const { token, habitList, setHabitList, setTodayList, setDoneList } =
+    useContext(Context);
 
   useEffect(() => {
     const config = {
@@ -48,6 +47,17 @@ export default function HabitosPage() {
         alert(erro.response.data.message);
         console.log(erro);
       });
+    axios
+      .get(`${BASE_URL}habits/today`, config)
+      .then((resp) => {
+        setTodayList(resp.data);
+        setDoneList(resp.data.filter((habit) => habit.done == true));
+        console.log(resp.data);
+      })
+      .catch((erro) => {
+        alert(erro.response.data.message);
+        console.log(erro);
+      });
     setShowForm(false);
   }
 
@@ -58,7 +68,6 @@ export default function HabitosPage() {
 
   return (
     <PageContainer>
-      <Navbar />
       <Header>
         <h2>Meus hábitos</h2>
         <button onClick={addHabito}>+</button>
@@ -84,8 +93,6 @@ export default function HabitosPage() {
             reload={reload}></Habito>
         ))
       )}
-
-      <Footer />
     </PageContainer>
   );
 }

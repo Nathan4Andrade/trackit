@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import HabitoHoje from "./HabitoHoje";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { useContext, useEffect } from "react";
@@ -11,8 +10,15 @@ import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
 
 export default function HojePage() {
-  const { token, todayList, setTodayList, doneList, setDoneList } =
-    useContext(Context);
+  const {
+    token,
+    todayList,
+    setTodayList,
+    doneList,
+    setDoneList,
+    percentage,
+    setPercentage,
+  } = useContext(Context);
 
   function reload() {
     const config = {
@@ -25,6 +31,9 @@ export default function HojePage() {
       .then((resp) => {
         setTodayList(resp.data);
         setDoneList(resp.data.filter((habit) => habit.done == true));
+        setPercentage(
+          Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
+        );
         console.log(resp.data);
       })
       .catch((erro) => {
@@ -56,6 +65,9 @@ export default function HojePage() {
       .then((resp) => {
         setTodayList(resp.data);
         setDoneList(resp.data.filter((habit) => habit.done == true));
+        setPercentage(
+          Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
+        );
         console.log(resp.data);
       })
       .catch((erro) => {
@@ -64,7 +76,6 @@ export default function HojePage() {
   }, []);
   return (
     <PageContainer>
-      <Navbar />
       <Header>
         <h2>{today()}</h2>
         {doneList.length === 0 ? (
@@ -73,9 +84,7 @@ export default function HojePage() {
           </Percentage>
         ) : (
           <Percentage isZero={doneList.length}>
-            {Math.floor(
-              (Number(doneList.length) / Number(todayList.length)) * 100
-            ) + `% dos hábitos concluídos`}{" "}
+            {percentage + `% dos hábitos concluídos`}{" "}
           </Percentage>
         )}
       </Header>
@@ -90,8 +99,6 @@ export default function HojePage() {
           reload={reload}
         />
       ))}
-
-      <Footer />
     </PageContainer>
   );
 }
