@@ -50,10 +50,8 @@ export default function CriarHabito(props) {
         .post(`${BASE_URL}habits`, add, config)
         .then((resposta) => {
           console.log(resposta.data);
-          setDays([]); //volta a ficar limpo para adc um novo conjunto de dias
+          setDays([]);
           setName("");
-          // setRenderAdd(false);
-          // reloadAfterAddOrDelete();
           setDisable(false);
           reload();
         })
@@ -63,7 +61,7 @@ export default function CriarHabito(props) {
           console.log(erro);
         });
     } else {
-      alert("Escreve o nome do hábito e escolha pelo menos um dia da semana");
+      alert("Hábito ou dia da semana não pode ficar vazio");
       setDisable(false);
     }
   }
