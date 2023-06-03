@@ -14,6 +14,7 @@ import { Context } from "./contexts/Context";
 function App() {
   const [token, setToken] = useState("");
   const [image, setImage] = useState("");
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState("");
   const [disable, setDisable] = useState("");
   const [name, setName] = useState("");
@@ -26,6 +27,8 @@ function App() {
   return (
     <Context.Provider
       value={{
+        user,
+        setUser,
         token,
         setToken,
         image,

@@ -10,11 +10,11 @@ import { ThreeDots } from "react-loader-spinner";
 import logo from "../../assets/logo.png";
 
 export default function LoginPage() {
-  const { setImage, loading, setLoading, setToken } = useContext(Context);
+  const { setImage, loading, setLoading, setToken, setUser } =
+    useContext(Context);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   function login(e) {
@@ -30,6 +30,9 @@ export default function LoginPage() {
       .then((resp) => {
         setImage(resp.data.image);
         setToken(resp.data.token);
+        setUser(resp.data);
+        console.log(resp.data);
+        localStorage.setItem("user", JSON.stringify(resp.data));
         navigate("/hoje");
       })
       .catch(() => {
@@ -79,6 +82,7 @@ export default function LoginPage() {
           )}
         </Btn>
       </form>
+
       <Link data-test="signup-link" to={`/cadastro`}>
         <SignUp>Não tem uma conta? Cadastre-se!</SignUp>
       </Link>

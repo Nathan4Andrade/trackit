@@ -54,19 +54,18 @@ export default function HabitoHoje(props) {
     <HabitoContainer data-test="today-habit-container">
       <Info>
         <h4 data-test="today-habit-name">{name}</h4>
-        <p>
+        <p data-test="today-habit-sequence">
           Sequência atual:{" "}
-          <Sequence done={done} data-test="today-habit-sequence">
+          <Sequence done={done}>
             {currentSequence} {currentSequence === 1 ? "dia" : "dias"}
           </Sequence>
         </p>
-        <p>
+        <p data-test="today-habit-record">
           Seu recorde:{" "}
           <Record
             colorRecord={
               highestSequence > 0 && highestSequence === currentSequence
-            }
-            data-test="today-habit-record">
+            }>
             {highestSequence} {highestSequence === 1 ? "dia" : "dias"}
           </Record>
         </p>
