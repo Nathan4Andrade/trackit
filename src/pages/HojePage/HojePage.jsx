@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import HabitoHoje from "./HabitoHoje";
 import Navbar from "../../components/Navbar";
