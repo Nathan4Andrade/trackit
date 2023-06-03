@@ -7,19 +7,19 @@ function Navbar() {
   const { image } = useContext(Context);
 
   return (
-    <NavContainer>
+    <NavContainer data-test="header">
       <Link to={`/hoje`}>
         <Logo>TrackIt</Logo>
       </Link>
 
-      <ProfilePicture src={image} />
+      <ProfilePicture src={image} data-test="avatar" />
     </NavContainer>
   );
 }
 
 export default Navbar;
 
-const NavContainer = styled.div`
+const NavContainer = styled.header`
   width: 100%;
   height: 70px;
   display: flex;

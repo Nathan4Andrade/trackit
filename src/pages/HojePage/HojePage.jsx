@@ -78,13 +78,13 @@ export default function HojePage() {
   return (
     <PageContainer>
       <Header>
-        <h2>{today()}</h2>
+        <h2 data-test="today">{today()}</h2>
         {doneList.length === 0 ? (
-          <Percentage isZero={doneList.length}>
+          <Percentage isZero={doneList.length} data-test="today-counter">
             Nenhum hábito concluído ainda
           </Percentage>
         ) : (
-          <Percentage isZero={doneList.length}>
+          <Percentage isZero={doneList.length} data-test="today-counter">
             {percentage + `% dos hábitos concluídos`}{" "}
           </Percentage>
         )}

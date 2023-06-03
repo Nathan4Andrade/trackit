@@ -38,15 +38,16 @@ export default function Habito(props) {
     }
   }
   return (
-    <HabitoContainer>
+    <HabitoContainer data-test="habit-container">
       <div>
-        <h3>{name}</h3>
+        <h3 data-test="habit-name">{name}</h3>
         <ListaDias>
           {diasdasemana.map((buttonDia) => (
             <Dia
               key={buttonDia.id}
               id={buttonDia.id}
-              diaSelecionado={days.includes(buttonDia.id)}>
+              diaSelecionado={days.includes(buttonDia.id)}
+              data-test="habit-day">
               {buttonDia.day}
             </Dia>
           ))}
@@ -55,7 +56,11 @@ export default function Habito(props) {
 
       <div>
         <button>
-          <img src={trash} onClick={deleteHabito} />
+          <img
+            src={trash}
+            onClick={deleteHabito}
+            data-test="habit-delete-btn"
+          />
         </button>
       </div>
     </HabitoContainer>

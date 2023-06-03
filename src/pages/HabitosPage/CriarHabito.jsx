@@ -86,18 +86,20 @@ export default function CriarHabito(props) {
     }
   }
   return (
-    <CriarHabitoContainer>
+    <CriarHabitoContainer data-test="habit-create-container">
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="nome do hábito"
         disabled={disable}
+        data-test="habit-name-input"
         required
       />
       <ListaDias>
         {diasdasemana.map((buttonDia) => (
           <Dia
+            data-test="habit-day"
             key={buttonDia.id}
             onClick={() => chooseDays(buttonDia.id)}
             diaSelecionado={days.includes(buttonDia.id)}
@@ -108,10 +110,16 @@ export default function CriarHabito(props) {
       </ListaDias>
 
       <ListaBotoes>
-        <button disabled={disable} onClick={cancelar}>
+        <button
+          disabled={disable}
+          onClick={cancelar}
+          data-test="habit-create-cancel-btn">
           Cancelar
         </button>
-        <button disabled={disable} onClick={adicionar}>
+        <button
+          disabled={disable}
+          onClick={adicionar}
+          data-test="habit-create-save-btn">
           Salvar
         </button>
       </ListaBotoes>

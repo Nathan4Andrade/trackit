@@ -51,6 +51,7 @@ export default function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
+          data-test="email-input"
           required></input>
         <input
           type="password"
@@ -59,8 +60,9 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
+          data-test="password-input"
           required></input>
-        <Btn type="submit" disabled={loading}>
+        <Btn type="submit" disabled={loading} data-test="login-btn">
           {loading ? (
             <ThreeDots
               height="80"
@@ -77,7 +79,7 @@ export default function LoginPage() {
           )}
         </Btn>
       </form>
-      <Link to={`/cadastro`}>
+      <Link data-test="signup-link" to={`/cadastro`}>
         <SignUp>Não tem uma conta? Cadastre-se!</SignUp>
       </Link>
     </PageContainer>

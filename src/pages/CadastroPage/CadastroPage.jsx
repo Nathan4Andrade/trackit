@@ -50,6 +50,7 @@ export default function CadastroPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
+          data-test="email-input"
           required></input>
         <input
           type="password"
@@ -57,6 +58,7 @@ export default function CadastroPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
+          data-test="password-input"
           required></input>
         <input
           type="text"
@@ -64,14 +66,16 @@ export default function CadastroPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={loading}
+          data-test="user-name-input"
           required></input>
         <input
           type="text"
           placeholder="foto"
           value={image}
           onChange={(e) => setImage(e.target.value)}
+          data-test="user-image-input"
           disabled={loading}></input>
-        <Btn type="submit" disabled={loading}>
+        <Btn type="submit" disabled={loading} data-test="signup-btn">
           {loading ? (
             <ThreeDots
               height="80"
@@ -88,7 +92,7 @@ export default function CadastroPage() {
           )}
         </Btn>
       </form>
-      <Link to={`/`}>
+      <Link data-test="login-link" to={`/`}>
         <Login>Já tem uma conta? Faça login!</Login>
       </Link>
     </PageContainer>

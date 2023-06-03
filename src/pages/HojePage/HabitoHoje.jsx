@@ -51,27 +51,31 @@ export default function HabitoHoje(props) {
     }
   }
   return (
-    <HabitoContainer>
+    <HabitoContainer data-test="today-habit-container">
       <Info>
-        <h4>{name}</h4>
+        <h4 data-test="today-habit-name">{name}</h4>
         <p>
           Sequência atual:{" "}
-          <Sequency done={done}>
+          <Sequence done={done} data-test="today-habit-sequence">
             {currentSequence} {currentSequence === 1 ? "dia" : "dias"}
-          </Sequency>
+          </Sequence>
         </p>
         <p>
           Seu recorde:{" "}
           <Record
             colorRecord={
               highestSequence > 0 && highestSequence === currentSequence
-            }>
+            }
+            data-test="today-habit-record">
             {highestSequence} {highestSequence === 1 ? "dia" : "dias"}
           </Record>
         </p>
       </Info>
-      <Checkbox done={done}>
-        <img src={checkbox} alt="checkbox" onClick={checkHabit} />
+      <Checkbox
+        done={done}
+        data-test="today-habit-check-btn"
+        onClick={checkHabit}>
+        <img src={checkbox} alt="checkbox" />
       </Checkbox>
     </HabitoContainer>
   );
@@ -80,7 +84,7 @@ export default function HabitoHoje(props) {
 const Record = styled.span`
   color: ${(props) => (props.colorRecord ? "#8FC549" : "#666666")};
 `;
-const Sequency = styled.span`
+const Sequence = styled.span`
   color: ${(props) => (props.done ? "#8FC549" : "#666666")};
 `;
 const Info = styled.div`

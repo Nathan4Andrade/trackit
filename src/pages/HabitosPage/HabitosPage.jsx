@@ -72,7 +72,9 @@ export default function HabitosPage() {
     <PageContainer>
       <Header>
         <h2>Meus hábitos</h2>
-        <button onClick={addHabito}>+</button>
+        <button onClick={addHabito} data-test="habit-create-btn">
+          +
+        </button>
       </Header>
       {showForm ? (
         <CriarHabito setShowForm={setShowForm} reload={reload}></CriarHabito>

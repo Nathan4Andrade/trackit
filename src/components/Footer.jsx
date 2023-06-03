@@ -13,12 +13,14 @@ function Footer() {
   );
 
   return (
-    <FooterContainer>
+    <FooterContainer data-test="menu">
       <Option>
-        <Link to="/habitos">Hábitos</Link>
+        <Link to="/habitos" data-test="habit-link">
+          Hábitos
+        </Link>
       </Option>
       <ProgressBar>
-        <Link to="/hoje">
+        <Link to="/hoje" data-test="today-link">
           <CircularProgressbar
             value={percentage}
             text={`Hoje`}
@@ -33,7 +35,9 @@ function Footer() {
         </Link>
       </ProgressBar>
       <Option>
-        <Link to="/historico">Histórico</Link>
+        <Link to="/historico" data-test="history-link">
+          Histórico
+        </Link>
       </Option>
     </FooterContainer>
   );
