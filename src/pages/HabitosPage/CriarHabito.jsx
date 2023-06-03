@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { useContext } from "react";
 import { Context } from "../../contexts/Context";
@@ -9,7 +10,7 @@ export default function CriarHabito(props) {
   const { token, name, setName, days, setDays, disable, setDisable } =
     useContext(Context);
 
-  const { reload } = props;
+  const { reload, setShowForm } = props;
 
   function chooseDays(id) {
     if (days.includes(id)) {
@@ -25,6 +26,12 @@ export default function CriarHabito(props) {
     } else {
       setDays([...days, id]);
     }
+  }
+  function cancelar(e) {
+    e.preventDefault();
+
+    setShowForm(false);
+    reload();
   }
   function adicionar(e) {
     e.preventDefault();
@@ -42,10 +49,7 @@ export default function CriarHabito(props) {
       axios
         .post(`${BASE_URL}habits`, add, config)
         .then((resposta) => {
-          console.log(
-            "resposta.data em: POST de Adicionar novo Habito",
-            resposta.data
-          );
+          console.log(resposta.data);
           setDays([]); //volta a ficar limpo para adc um novo conjunto de dias
           setName("");
           // setRenderAdd(false);
@@ -86,7 +90,9 @@ export default function CriarHabito(props) {
       </ListaDias>
 
       <ListaBotoes>
-        <button>Cancelar</button>
+        <button disabled={disable} onClick={cancelar}>
+          Cancelar
+        </button>
         <button disabled={disable} onClick={adicionar}>
           Salvar
         </button>

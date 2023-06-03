@@ -63,7 +63,11 @@ export default function HabitosPage() {
         <h2>Meus hábitos</h2>
         <button onClick={addHabito}>+</button>
       </Header>
-      {showForm ? <CriarHabito reload={reload}></CriarHabito> : ""}
+      {showForm ? (
+        <CriarHabito setShowForm={setShowForm} reload={reload}></CriarHabito>
+      ) : (
+        ""
+      )}
 
       {habitList.length === 0 ? (
         <p>
