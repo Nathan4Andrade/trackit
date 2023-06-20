@@ -1,22 +1,69 @@
 import styled from "styled-components";
-import { Context } from "../contexts/Context";
+import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 function Navbar() {
-  const { image, token } = useContext(Context);
+  const { user } = useContext(UserContext);
+  const [showOptions, setShowOptions] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.clear();
+    setLoading(!loading);
+
+    setTimeout(() => {
+      setShowOptions(false);
+      navigate("/");
+      setLoading(false);
+    }, 700);
+  }
 
   return (
     <>
-      {token === "" ? (
+      {!user ? (
         ""
       ) : (
-        <NavContainer data-test="header">
+        <NavContainer data-test="header" visible={user}>
           <Link to={`/hoje`}>
             <Logo>TrackIt</Logo>
           </Link>
-
-          <ProfilePicture src={image} data-test="avatar" />
+          <PersonalInfo>
+            {showOptions ? (
+              <h1 onClick={() => setShowOptions(!showOptions)}>Cancelar</h1>
+            ) : (
+              <>
+                <ProfilePicture
+                  onClick={() => setShowOptions(!showOptions)}
+                  src={user.image}
+                  data-test="avatar"
+                />
+                <h1>Olá, {user.name}!</h1>
+              </>
+            )}
+            {showOptions && (
+              <button onClick={logout} disabled={loading}>
+                {loading ? (
+                  <ThreeDots
+                    height="26"
+                    width="64"
+                    radius="9"
+                    color="#ffffff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                ) : (
+                  <span>Logout</span>
+                )}
+              </button>
+            )}
+          </PersonalInfo>
         </NavContainer>
       )}
     </>
@@ -24,7 +71,18 @@ function Navbar() {
 }
 
 export default Navbar;
-
+const PersonalInfo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+  button {
+    margin-left: 10px;
+  }
+  h1 {
+    margin-left: 10px;
+    color: #ffffff;
+  }
+`;
 const NavContainer = styled.header`
   width: 100%;
   height: 70px;
@@ -58,5 +116,4 @@ const ProfilePicture = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin-right: 18px;
 `;

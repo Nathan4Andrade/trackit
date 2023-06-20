@@ -8,23 +8,29 @@ import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 
 import { ContextProvider } from "./contexts/Context";
+import { UserProvider } from "./contexts/UserContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
-    <ContextProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
+    <AuthProvider>
+      <UserProvider>
+        <ContextProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Navbar />
 
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/cadastro" element={<CadastroPage />} />
-          <Route path="/habitos" element={<HabitosPage />} />
-          <Route path="/hoje" element={<HojePage />} />
-          <Route path="/historico" element={<HistoricoPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ContextProvider>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/cadastro" element={<CadastroPage />} />
+              <Route path="/habitos" element={<HabitosPage />} />
+              <Route path="/hoje" element={<HojePage />} />
+              <Route path="/historico" element={<HistoricoPage />} />
+            </Routes>
+          </BrowserRouter>
+        </ContextProvider>
+      </UserProvider>
+    </AuthProvider>
   );
 }
 

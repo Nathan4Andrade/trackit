@@ -6,15 +6,18 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
 
+import { UserContext } from "../../contexts/UserContext";
+
 export default function HabitoHoje(props) {
-  const { token, setPercentage, todayList, doneList } = useContext(Context);
+  const { setPercentage, todayList, doneList } = useContext(Context);
+  const { user } = useContext(UserContext);
   const { id, name, done, currentSequence, highestSequence, reload } = props;
   const [isChecked, setIsChecked] = useState(done);
 
   function checkHabit() {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     const body = {};

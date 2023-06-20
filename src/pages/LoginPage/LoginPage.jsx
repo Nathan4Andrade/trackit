@@ -3,24 +3,36 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
+import { AuthContext } from "../../contexts/AuthContext";
+import { UserContext } from "../../contexts/UserContext";
 
-import { Context } from "../../contexts/Context";
 import { ThreeDots } from "react-loader-spinner";
 
 import logo from "../../assets/logo.png";
+import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { setImage, loading, setLoading, setToken, setUser } =
-    useContext(Context);
+  const { setToken } = useContext(AuthContext);
+  const { setUser, persistUser } = useContext(UserContext);
 
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
-  function login(e) {
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    console.log(`UseEffect do login: ${storedUser}`);
+    if (storedUser) {
+      setUser(storedUser);
+      navigate("/hoje");
+    }
+  }, []);
+  const login = (e) => {
     e.preventDefault();
-    console.log({ email, password });
     setLoading(true);
+
     const loginInfo = {
       email: email,
       password: password,
@@ -28,9 +40,10 @@ export default function LoginPage() {
     axios
       .post(`${BASE_URL}auth/login`, loginInfo)
       .then((resp) => {
-        setImage(resp.data.image);
         setToken(resp.data.token);
         setUser(resp.data);
+        persistUser(resp.data);
+        console.log("funcao do login");
         console.log(resp.data);
         navigate("/hoje");
       })
@@ -38,7 +51,7 @@ export default function LoginPage() {
         alert("Usuario não encontrado");
         setLoading(false);
       });
-  }
+  };
   return (
     <PageContainer>
       <Logo>
@@ -121,6 +134,8 @@ const Logo = styled.div`
   margin-top: 100px;
 `;
 const PageContainer = styled.div`
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;

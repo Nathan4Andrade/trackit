@@ -5,10 +5,10 @@ import { Context } from "../../contexts/Context";
 import diasdasemana from "../../constants/diasdasemana";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function CriarHabito(props) {
   const {
-    token,
     name,
     setName,
     days,
@@ -18,6 +18,8 @@ export default function CriarHabito(props) {
     setTodayList,
     setDoneList,
   } = useContext(Context);
+
+  const { user } = useContext(UserContext);
 
   const { reload, setShowForm } = props;
 
@@ -51,7 +53,7 @@ export default function CriarHabito(props) {
 
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 

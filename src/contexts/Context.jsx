@@ -4,9 +4,6 @@ import { createContext, useState } from "react";
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [image, setImage] = useState("");
-  const [user, setUser] = useState({});
   const [loading, setLoading] = useState("");
   const [disable, setDisable] = useState("");
   const [name, setName] = useState("");
@@ -18,12 +15,6 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        user,
-        setUser,
-        token,
-        setToken,
-        image,
-        setImage,
         loading,
         setLoading,
         name,

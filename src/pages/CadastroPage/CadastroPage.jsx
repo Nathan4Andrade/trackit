@@ -1,33 +1,31 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.png";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
-import { Context } from "../../contexts/Context";
 
 import { ThreeDots } from "react-loader-spinner";
 
 export default function CadastroPage() {
-  const { image, setImage, loading, setLoading } = useContext(Context);
-
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate("/");
-
-  function signUp(e) {
+  const navigate = useNavigate();
+  function signup(e) {
     e.preventDefault();
     setLoading(true);
-    const signUpInfo = {
+    const signupInfo = {
       name: name,
       email: email,
       password: password,
       image: image,
     };
     axios
-      .post(`${BASE_URL}auth/sign-up`, signUpInfo)
+      .post(`${BASE_URL}auth/sign-up`, signupInfo)
       .then(() => {
         navigate("/");
       })
@@ -43,7 +41,7 @@ export default function CadastroPage() {
         <img src={logo} alt="logo" />
         TrackIt
       </Logo>
-      <form onSubmit={signUp}>
+      <form onSubmit={signup}>
         <input
           type="email"
           placeholder="email"

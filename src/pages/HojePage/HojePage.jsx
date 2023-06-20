@@ -10,9 +10,10 @@ import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
 import Footer from "../../components/Footer";
 
+import { UserContext } from "../../contexts/UserContext";
+
 export default function HojePage() {
   const {
-    token,
     todayList,
     setTodayList,
     doneList,
@@ -21,10 +22,12 @@ export default function HojePage() {
     setPercentage,
   } = useContext(Context);
 
+  const { user } = useContext(UserContext);
+
   function reload() {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     axios
@@ -58,7 +61,7 @@ export default function HojePage() {
   useEffect(() => {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     axios

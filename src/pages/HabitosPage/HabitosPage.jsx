@@ -7,16 +7,18 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import Habito from "./Habito";
 import Footer from "../../components/Footer";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function HabitosPage() {
   const [showForm, setShowForm] = useState();
-  const { token, habitList, setHabitList, setTodayList, setDoneList } =
+  const { habitList, setHabitList, setTodayList, setDoneList } =
     useContext(Context);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     axios
@@ -35,7 +37,7 @@ export default function HabitosPage() {
   function reload() {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     axios

@@ -3,13 +3,13 @@ import styled from "styled-components";
 import diasdasemana from "../../constants/diasdasemana";
 
 import trash from "../../assets/trash.png";
-import { Context } from "../../contexts/Context";
 import { useContext } from "react";
 import { BASE_URL } from "../../constants/urls";
 import axios from "axios";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Habito(props) {
-  const { token } = useContext(Context);
+  const { user } = useContext(UserContext);
   const { id, name, days, reload } = props;
 
   function deleteHabito() {
@@ -19,7 +19,7 @@ export default function Habito(props) {
 
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
