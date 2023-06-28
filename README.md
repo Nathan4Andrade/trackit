@@ -6,7 +6,7 @@
   <a href="https://github.com/nathan4andrade/trackit/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/nathan4andrade/trackit">
   </a>
-   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"></p>
+ </p>
 
 <p align="center">
  <a href="#-sobre-o-projeto">Projeto</a> •
@@ -98,5 +98,3 @@ As seguintes ferramentas foram usadas na construção do projeto:
  <img style="border-radius: 100px" src="https://avatars.githubusercontent.com/u/12959199?v=4" width="80px;" alt="foto"/>
  <p>Nathan Andrade</p>
 </a>
-  
----
