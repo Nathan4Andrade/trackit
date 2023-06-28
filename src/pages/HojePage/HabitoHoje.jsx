@@ -25,7 +25,7 @@ export default function HabitoHoje(props) {
     if (isChecked) {
       axios
         .post(`${BASE_URL}habits/${id}/uncheck`, body, config)
-        .then((resp) => {
+        .then(() => {
           setIsChecked(!isChecked);
           setPercentage(
             Math.floor(
