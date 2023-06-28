@@ -13,9 +13,8 @@
  <a href="#-funcionalidades">Funcionalidades</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
-  <a href="#-executar">Executar</a> • 
+  <a href="#-como-executar-o-projeto">Executar</a> • 
  <a href="#-autor">Autor</a> • 
- <a href="#-licença">Licença</a>
 </p>
 
 ## 💻 Projeto
