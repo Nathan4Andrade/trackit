@@ -1,5 +1,5 @@
 <p align="center" width="300px">
-<img src="./src/common/assets/logo.jpg"/>
+<img src="./src/assets/logo2.png"/>
 </p>
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/nathan4andrade/trackit">
