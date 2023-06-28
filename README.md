@@ -71,7 +71,7 @@ $ git clone git@github.com:Nathan4Andrade/trackit.git
 # Vá para a pasta da aplicação e instale as dependências
 $ npm install
 # Execute a aplicação em modo de desenvolvimento
-$ npm run start
+$ npm run dev
 # A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 ```
 
