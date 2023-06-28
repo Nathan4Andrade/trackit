@@ -8,7 +8,6 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../contexts/Context";
-import Footer from "../../components/Footer";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -38,7 +37,6 @@ export default function HojePage() {
         setPercentage(
           Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
         );
-        console.log(resp.data);
       })
       .catch((erro) => {
         alert(erro.response.data.message);
@@ -72,7 +70,6 @@ export default function HojePage() {
         setPercentage(
           Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
         );
-        console.log(resp.data);
       })
       .catch((erro) => {
         console.log(erro);
@@ -103,7 +100,7 @@ export default function HojePage() {
           reload={reload}
         />
       ))}
-      <Footer />
+      {/*       <Footer /> */}
     </PageContainer>
   );
 }

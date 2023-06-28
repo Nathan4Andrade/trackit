@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { ContextProvider } from "./contexts/Context";
 import { UserProvider } from "./contexts/UserContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/hoje" element={<HojePage />} />
               <Route path="/historico" element={<HistoricoPage />} />
             </Routes>
+            <Footer />
           </BrowserRouter>
         </ContextProvider>
       </UserProvider>

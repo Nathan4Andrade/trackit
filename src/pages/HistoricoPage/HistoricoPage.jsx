@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Footer from "../../components/Footer";
 
 export default function HistoricoPage() {
   return (
@@ -8,7 +7,7 @@ export default function HistoricoPage() {
         <h2>Histórico</h2>
         <h3>Em breve você poderá ver o histórico dos seus hábitos aqui!</h3>
       </Header>
-      <Footer />
+      {/*       <Footer /> */}
     </PageContainer>
   );
 }

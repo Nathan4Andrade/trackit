@@ -25,9 +25,8 @@ export default function Habito(props) {
 
       axios
         .delete(URL, config)
-        .then((resp) => {
+        .then(() => {
           reload();
-          console.log(resp);
         })
         .catch((erro) => {
           alert(erro.response.data.message);

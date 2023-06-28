@@ -15,15 +15,12 @@ export const UserProvider = ({ children }) => {
     const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
-      console.log(`usuario guardado em json: ${storedUser}`);
       setUser(JSON.parse(storedUser));
     }
   }, []);
 
   const persistUser = (userData) => {
     // Armazena o usuário no Local Storage
-    console.log("usuario a ser persistido");
-    console.log(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };

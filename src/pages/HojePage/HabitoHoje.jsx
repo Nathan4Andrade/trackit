@@ -34,13 +34,12 @@ export default function HabitoHoje(props) {
           );
 
           reload();
-          console.log(resp);
         })
         .catch((erro) => alert(erro.response.data.message));
     } else {
       axios
         .post(`${BASE_URL}habits/${id}/check`, body, config)
-        .then((resp) => {
+        .then(() => {
           setIsChecked(!isChecked);
           setPercentage(
             Math.floor(
@@ -48,7 +47,6 @@ export default function HabitoHoje(props) {
             )
           );
           reload();
-          console.log(resp);
         })
         .catch((erro) => alert(erro.response.data.message));
     }

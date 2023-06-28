@@ -137,4 +137,6 @@ const PageContainer = styled.div`
   color: #293845;
   height: 100vh;
   background-color: #ffffff;
+  z-index: 2;
+  position: relative;
 `;

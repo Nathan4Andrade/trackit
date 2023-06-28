@@ -2,15 +2,18 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../contexts/Context";
 
 function Footer() {
   const { percentage, setPercentage, todayList, doneList } =
     useContext(Context);
-  setPercentage(
-    Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
-  );
+
+  useEffect(() => {
+    setPercentage(
+      Math.floor((Number(doneList.length) / Number(todayList.length)) * 100)
+    );
+  }, [percentage, doneList, todayList, setPercentage]);
 
   return (
     <FooterContainer data-test="menu">

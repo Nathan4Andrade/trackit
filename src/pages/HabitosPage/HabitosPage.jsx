@@ -6,7 +6,6 @@ import { Context } from "../../contexts/Context";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 import Habito from "./Habito";
-import Footer from "../../components/Footer";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function HabitosPage() {
@@ -25,8 +24,6 @@ export default function HabitosPage() {
       .get(`${BASE_URL}habits`, config)
       .then((resposta) => {
         setHabitList(resposta.data);
-
-        console.log(resposta.data);
       })
       .catch((erro) => {
         alert(erro.response.data.message);
@@ -44,8 +41,6 @@ export default function HabitosPage() {
       .get(`${BASE_URL}habits`, config)
       .then((resposta) => {
         setHabitList(resposta.data);
-
-        console.log(resposta.data);
       })
       .catch((erro) => {
         alert(erro.response.data.message);
@@ -56,7 +51,6 @@ export default function HabitosPage() {
       .then((resp) => {
         setTodayList(resp.data);
         setDoneList(resp.data.filter((habit) => habit.done == true));
-        console.log(resp.data);
       })
       .catch((erro) => {
         alert(erro.response.data.message);
@@ -99,7 +93,7 @@ export default function HabitosPage() {
             reload={reload}></Habito>
         ))
       )}
-      <Footer />
+      {/*       <Footer /> */}
     </PageContainer>
   );
 }
