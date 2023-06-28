@@ -48,7 +48,9 @@ O layout somente para Mobile da aplicação está disponível no Figma:
 
 ### Mobile
 
+<p width="300px">
 <img src="./src/assets/trackit-screen.gif"/>
+</p>
 
 ---
 
